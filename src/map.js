@@ -1,11 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer, Tooltip, Circle } from 'react-leaflet';
 import DivIcon from 'react-leaflet-div-icon';
 import axios from 'axios';
 
-
-const position = [51.0, -0.09]
 
 export default class MapView extends React.Component {
   constructor(props) {
@@ -36,6 +34,8 @@ export default class MapView extends React.Component {
 
 render() {
    const position = [40.730610, -73.935242];
+   const x = 40.730610;
+   const y = -73.935242;
     return (
         <Map
           style={{height: "100vh"}}
@@ -44,6 +44,11 @@ render() {
           <TileLayer
             url="https://api.mapbox.com/styles/v1/nicknyr/cje7mtk2y6gf92snsydobiahf/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibmlja255ciIsImEiOiJjajduNGptZWQxZml2MndvNjk4eGtwbDRkIn0.L0aWwfHlFJVGa-WOj7EHaA"
             attribution="<attribution>" />
+            <Circle
+              center={[x, y]}
+              radius={7}
+              color={"red"}>
+            </Circle>
           <Marker position={position}>
             <Popup>
               <span>
